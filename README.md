@@ -4,7 +4,7 @@
 
 ## Screenshots
 
-<img src="images/secondReview.png">
+<img src="./src/todo1.png">
 
 ## Live Demo
 
