@@ -19,17 +19,25 @@ li {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(139, 138, 138);
-  padding: 10px;
+  padding: 15px;
   
 }
 
 .todo-input-div {
+  display: flex;
+  align-items: center;
+}
+
+.todo-description{
+    margin-left: 10px;
+    font-size: 18px;
 }
 
 .todo-input {
   padding: 10px;
   border: none;
   font-size: 18px;
+  margin-left: 10px;
 }
 
 .todo-input:focus {
@@ -38,10 +46,10 @@ li {
 
 .clear-btn {
   display: block;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
-  background: #fff;
   border: none;
+  font-size: 17px;
 }
 
 .clear-btn:hover {
