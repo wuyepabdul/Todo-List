@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+.todo-div {
+  box-shadow: 0px 1px 8px 0px;
+  width: 50%;
+  margin: 40px auto;
+}
+
+.todo-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(139, 138, 138);
+  padding: 10px;
+  
+}
+
+.todo-input-div {
+}
+
+.todo-input {
+  padding: 10px;
+  border: none;
+  font-size: 18px;
+}
+
+.todo-input:focus {
+  outline: none;
+}
+
+.clear-btn {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  background: #fff;
+  border: none;
+}
+
+.clear-btn:hover {
+  text-decoration: underline;
+}

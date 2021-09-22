@@ -1,16 +1,17 @@
 import _ from 'lodash';
-import printMe from './print.js';
+import './style.css';
+
+const toDoTasks = [
+  { index: 1, description: 'wash dishes', completed: false },
+  { index: 2, description: 'complete To Do List Project', completed: false },
+  { index: 3, description: 'Fix car', completed: false },
+];
 
 function component() {
   const element = document.createElement('div');
-  const btn = document.createElement('button');
 
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
 
   return element;
 }
