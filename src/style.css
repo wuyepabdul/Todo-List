@@ -9,7 +9,7 @@ li {
 }
 
 .todo-div {
-  box-shadow: 0px 1px 8px 0px;
+  box-shadow: 0 1px 8px 0;
   width: 50%;
   margin: 40px auto;
 }
@@ -20,7 +20,6 @@ li {
   align-items: center;
   border-bottom: 1px solid rgb(139, 138, 138);
   padding: 15px;
-  
 }
 
 .todo-input-div {
@@ -28,9 +27,9 @@ li {
   align-items: center;
 }
 
-.todo-description{
-    margin-left: 10px;
-    font-size: 18px;
+.todo-description {
+  margin-left: 10px;
+  font-size: 18px;
 }
 
 .todo-input {
