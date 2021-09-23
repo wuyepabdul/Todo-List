@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     index: './src/index.js',
     updateTodo: './src/updateTodo.js',
+    modifyTodo: './src/modifyTodo.js',
   },
   devServer: {
     static: './dist',

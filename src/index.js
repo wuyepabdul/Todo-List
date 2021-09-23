@@ -1,5 +1,6 @@
 import './style.css';
 import handleChecks from './updateTodo.js';
+import addTodo from './modifyTodo.js';
 
 const toDoTasks = [
   { index: 2, description: 'complete To Do List Project', completed: false },
@@ -16,15 +17,19 @@ let todoMarkup = `
 <li class="todo-li">
   <input
     type="text"
+    name="new-todo"
+    id="new-todo"
     class="todo-input add-todo"
     placeholder="Add to your list..."
   />  
-  <button> Add</button>
+  <button type='submit' class='add-btn'> Add</button>
 </li>
 </ul>`;
 
-const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
-const todosFromLocalStorage = localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
+const clearButton =
+  "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const todosFromLocalStorage =
+  localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
 const list = todosFromLocalStorage || toDoTasks;
 
 const component = () => {
@@ -60,3 +65,5 @@ document.body.appendChild(component());
 const listOfTodoElement = document.querySelectorAll('.todo-container');
 
 handleChecks(list, listOfTodoElement);
+
+addTodo(todosFromLocalStorage);
