@@ -27,7 +27,17 @@ const clearButton =
 function component() {
   const element = document.createElement('div');
   element.classList.add('todo-div');
-
+  toDoTasks.forEach((task) => {
+    todoMarkup += `<li class="todo-li">
+    <div class="todo-input-div">
+      <input type="checkbox" />
+      <p class='todo-description'> ${task.description}</p>
+    </div>
+     
+    <p><i class="fas fa-ellipsis-v"></i></p>
+  </li>`;
+  });
+  element.innerHTML = todoMarkup + clearButton;
   return element;
 }
 
