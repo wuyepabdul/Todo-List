@@ -21,7 +21,8 @@ let todoMarkup = `
 </li>
 </ul>`;
 
-const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const clearButton =
+  "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
 
 function component() {
   const element = document.createElement('div');
@@ -29,10 +30,10 @@ function component() {
   toDoTasks
     .sort((object1, object2) => object1.index - object2.index)
     .forEach((task) => {
-      todoMarkup += `<li class="todo-li">
+      todoMarkup += `<li class="todo-li todo-container">
     <div class="todo-input-div">
-      <input type="checkbox" />
-      <p class='todo-description'> ${task.description}</p>
+      <input type="checkbox" id="check" value=${task.completed} />
+      <p class='todo-description '> ${task.description}</p>
     </div>
     <p><i class="fas fa-ellipsis-v"></i></p>
   </li>`;
@@ -43,3 +44,20 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+const list = document.querySelectorAll('.todo-container');
+const handleCheck = () => {
+  list.forEach((element) => {
+    element.children[0].children[0].addEventListener('change', () => {
+      if (element.children[0].children[0].checked) {
+        element.children[0].children[1].classList.add('isChecked');
+        console.log(element.children[0].children[1])
+        toDoTasks.forEach((task)=>{console.log('task',task)})
+      } else {
+        element.children[0].children[1].classList.remove('isChecked');
+      }
+    });
+  });
+};
+
+handleCheck();

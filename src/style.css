@@ -36,6 +36,10 @@ li {
   font-size: 18px;
 }
 
+.isChecked{
+  text-decoration: line-through;
+}
+
 .todo-input {
   padding: 10px;
   border: none;
