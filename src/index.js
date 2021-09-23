@@ -21,8 +21,7 @@ let todoMarkup = `
 </li>
 </ul>`;
 
-const clearButton =
-  "<li><button class='clear-btn'>Clear All completed</button></li>";
+const clearButton = "<li><button class='clear-btn'>Clear All completed</button></li>";
 
 function component() {
   const element = document.createElement('div');
