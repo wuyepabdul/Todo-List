@@ -24,63 +24,74 @@ let todoMarkup = `
 const clearButton =
   "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
 
-function component() {
+const component = () => {
   const element = document.createElement('div');
   element.classList.add('todo-div');
-  toDoTasks
+  const todosFromLocalStorage = JSON.parse(localStorage.getItem('todos'));
+  todosFromLocalStorage
     .sort((object1, object2) => object1.index - object2.index)
     .forEach((task) => {
-      todoMarkup += `<li class="todo-li todo-container">
-    <div class="todo-input-div">
-      <input type="checkbox" id="check" value=${task.index} />
-      <p class='todo-description '> ${task.description}</p>
-    </div>
-    <p><i class="fas fa-ellipsis-v"></i></p>
-  </li>`;
+      if (task.completed === true) {
+        todoMarkup += `<li class="todo-li todo-container">
+      <div class="todo-input-div">
+        <input type="checkbox" id="check"  value=${task.index} checked  />
+        <p class='todo-description isChecked'> ${task.description}</p>
+      </div>
+      <p><i class="fas fa-ellipsis-v"></i></p>
+    </li>`;
+      } else {
+        todoMarkup += `<li class="todo-li todo-container">
+        <div class="todo-input-div">
+          <input type="checkbox" id="check"  value=${task.index}  />
+          <p class='todo-description '> ${task.description}</p>
+        </div>
+        <p><i class="fas fa-ellipsis-v"></i></p>
+      </li>`;
+      }
     });
 
   element.innerHTML = todoMarkup + clearButton;
   return element;
-}
+};
 
 document.body.appendChild(component());
 
-const list = document.querySelectorAll('.todo-container');
+const listOfTodoElement = document.querySelectorAll('.todo-container');
+
 const handleCheck = () => {
-  list.forEach((element) => {
-    element.children[0].children[0].addEventListener('change', () => {
-      if (element.children[0].children[0].checked) {
-        element.children[0].children[1].classList.add('isChecked');
-        // console.log(element.children[0].children[0]);
-        // console.log(element.children[0].children[1]);
+  console.log('todo tasks', toDoTasks);
+  console.log(JSON.parse(localStorage.getItem('todos')));
+  listOfTodoElement.forEach((element) => {
+    
+    const checkInputField = element.children[0].children[0];
+    const descriptionTag = element.children[0].children[1];
 
-        toDoTasks.forEach((task) => {
-          const matchedIndex =
-            task.index === Number(element.children[0].children[0].value);
+    checkInputField.addEventListener('change', () => {
+      if (checkInputField.checked) {
+        descriptionTag.classList.add('isChecked');
+        console.log('todo tasks', toDoTasks);
 
+        let localStorageTodo = JSON.parse(localStorage.getItem('todos'));
+        localStorageTodo.forEach((task) => {
+          const matchedIndex = task.index === Number(checkInputField.value);
           if (matchedIndex) {
             task.completed = true;
-            console.log(toDoTasks);
+            checkInputField.checked = true;
+            localStorage.setItem('todos', JSON.stringify(localStorageTodo));
           }
-         
         });
       } else {
-        element.children[0].children[1].classList.remove('isChecked');
+        descriptionTag.classList.remove('isChecked');
         toDoTasks.forEach((task) => {
-          const matchedIndex =
-            task.index === Number(element.children[0].children[0].value);
-
+          const matchedIndex = task.index === Number(checkInputField.value);
           if (matchedIndex) {
             task.completed = false;
-            console.log(toDoTasks);
+            localStorage.setItem('todos', JSON.stringify(toDoTasks));
           }
-         
         });
       }
     });
-    // console.log('todoTasks',toDoTasks)
   });
-  
 };
 
 handleCheck();
