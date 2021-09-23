@@ -1,4 +1,5 @@
 import './style.css';
+import handleChecks from './updateTodo.js';
 
 const toDoTasks = [
   { index: 2, description: 'complete To Do List Project', completed: false },
@@ -21,8 +22,10 @@ let todoMarkup = `
 </li>
 </ul>`;
 
-const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
-const todosFromLocalStorage = localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
+const clearButton =
+  "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const todosFromLocalStorage =
+  localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
 const list = todosFromLocalStorage || toDoTasks;
 
 const component = () => {
@@ -56,34 +59,5 @@ const component = () => {
 document.body.appendChild(component());
 
 const listOfTodoElement = document.querySelectorAll('.todo-container');
-const handleCheck = () => {
-  listOfTodoElement.forEach((element) => {
-    const checkInputField = element.children[0].children[0];
-    const descriptionTag = element.children[0].children[1];
 
-    checkInputField.addEventListener('change', () => {
-      if (checkInputField.checked) {
-        descriptionTag.classList.add('isChecked');
-        list.forEach((task) => {
-          const matchedIndex = task.index === Number(checkInputField.value);
-          if (matchedIndex) {
-            task.completed = true;
-            checkInputField.checked = true;
-            localStorage.setItem('todos', JSON.stringify(list));
-          }
-        });
-      } else {
-        descriptionTag.classList.remove('isChecked');
-        list.forEach((task) => {
-          const matchedIndex = task.index === Number(checkInputField.value);
-          if (matchedIndex) {
-            task.completed = false;
-            localStorage.setItem('todos', JSON.stringify(list));
-          }
-        });
-      }
-    });
-  });
-};
-
-handleCheck();
+handleChecks(list, listOfTodoElement);
