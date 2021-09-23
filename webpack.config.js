@@ -6,6 +6,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     index: './src/index.js',
+    updateTodo: './src/updateTodo.js',
   },
   devServer: {
     static: './dist',

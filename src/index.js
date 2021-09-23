@@ -1,4 +1,5 @@
 import './style.css';
+import handleChecks from './updateTodo.js';
 
 const toDoTasks = [
   { index: 2, description: 'complete To Do List Project', completed: false },
@@ -22,24 +23,39 @@ let todoMarkup = `
 </ul>`;
 
 const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const todosFromLocalStorage = localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
+const list = todosFromLocalStorage || toDoTasks;
 
-function component() {
+const component = () => {
   const element = document.createElement('div');
   element.classList.add('todo-div');
-  toDoTasks
+  list
     .sort((object1, object2) => object1.index - object2.index)
     .forEach((task) => {
-      todoMarkup += `<li class="todo-li">
-    <div class="todo-input-div">
-      <input type="checkbox" />
-      <p class='todo-description'> ${task.description}</p>
-    </div>
-    <p><i class="fas fa-ellipsis-v"></i></p>
-  </li>`;
+      if (task.completed === true) {
+        todoMarkup += `<li class="todo-li todo-container">
+      <div class="todo-input-div">
+        <input type="checkbox" id="check" value=${task.index} checked />
+        <p class='todo-description isChecked'> ${task.description}</p>
+      </div>
+      <p><i class="fas fa-ellipsis-v"></i></p>
+    </li>`;
+      } else {
+        todoMarkup += `<li class="todo-li todo-container">
+        <div class="todo-input-div">
+          <input type="checkbox" id="check" value=${task.index} />
+          <p class='todo-description '> ${task.description}</p>
+        </div>
+        <p><i class="fas fa-ellipsis-v"></i></p>
+      </li>`;
+      }
     });
 
   element.innerHTML = todoMarkup + clearButton;
   return element;
-}
-
+};
 document.body.appendChild(component());
+
+const listOfTodoElement = document.querySelectorAll('.todo-container');
+
+handleChecks(list, listOfTodoElement);
