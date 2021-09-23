@@ -27,6 +27,10 @@ li {
   align-items: center;
 }
 
+.add-todo{
+  font-style: italic;
+}
+
 .todo-description {
   margin-left: 10px;
   font-size: 18px;
@@ -41,6 +45,10 @@ li {
 
 .todo-input:focus {
   outline: none;
+}
+
+.fa-ellipsis-v{
+  color: grey;
 }
 
 .clear-btn {
