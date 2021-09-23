@@ -32,7 +32,7 @@ function component() {
     .forEach((task) => {
       todoMarkup += `<li class="todo-li todo-container">
     <div class="todo-input-div">
-      <input type="checkbox" id="check" value=${task.completed} />
+      <input type="checkbox" id="check" value=${task.index} />
       <p class='todo-description '> ${task.description}</p>
     </div>
     <p><i class="fas fa-ellipsis-v"></i></p>
@@ -51,13 +51,36 @@ const handleCheck = () => {
     element.children[0].children[0].addEventListener('change', () => {
       if (element.children[0].children[0].checked) {
         element.children[0].children[1].classList.add('isChecked');
-        console.log(element.children[0].children[1])
-        toDoTasks.forEach((task)=>{console.log('task',task)})
+        // console.log(element.children[0].children[0]);
+        // console.log(element.children[0].children[1]);
+
+        toDoTasks.forEach((task) => {
+          const matchedIndex =
+            task.index === Number(element.children[0].children[0].value);
+
+          if (matchedIndex) {
+            task.completed = true;
+            console.log(toDoTasks);
+          }
+         
+        });
       } else {
         element.children[0].children[1].classList.remove('isChecked');
+        toDoTasks.forEach((task) => {
+          const matchedIndex =
+            task.index === Number(element.children[0].children[0].value);
+
+          if (matchedIndex) {
+            task.completed = false;
+            console.log(toDoTasks);
+          }
+         
+        });
       }
     });
+    // console.log('todoTasks',toDoTasks)
   });
+  
 };
 
 handleCheck();
