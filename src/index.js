@@ -18,7 +18,8 @@ let todoMarkup = `
     type="text"
     class="todo-input add-todo"
     placeholder="Add to your list..."
-  />
+  />  
+  <button> Add</button>
 </li>
 </ul>`;
 
