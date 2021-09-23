@@ -27,7 +27,7 @@ li {
   align-items: center;
 }
 
-.add-todo{
+.add-todo {
   font-style: italic;
 }
 
@@ -47,7 +47,7 @@ li {
   outline: none;
 }
 
-.fa-ellipsis-v{
+.fa-ellipsis-v {
   color: grey;
 }
 
