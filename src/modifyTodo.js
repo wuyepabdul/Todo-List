@@ -9,9 +9,10 @@ export default function addTodo(todosFromLocalStorage) {
   });
 
   addBtn.addEventListener('click', () => {
-    console.log('click');
     todosFromLocalStorage.push(data);
-    todosFromLocalStorage[todosFromLocalStorage.length - 1].index = todosFromLocalStorage.length;
+    todosFromLocalStorage[todosFromLocalStorage.length - 1].index =
+      todosFromLocalStorage.length;
     localStorage.setItem('todos', JSON.stringify(todosFromLocalStorage));
+    window.location.reload();
   });
 }

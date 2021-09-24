@@ -2,12 +2,6 @@ import './style.css';
 import handleChecks from './updateTodo.js';
 import addTodo from './modifyTodo.js';
 
-/* const toDoTasks = [
-  { index: 2, description: 'complete To Do List Project', completed: false },
-  { index: 1, description: 'wash dishes', completed: false },
-  { index: 3, description: 'Fix car', completed: false },
-]; */
-
 let todoMarkup = `      
 <ul class="todo-ul">
 <li class="todo-li">
@@ -32,7 +26,6 @@ const clearButton =
 const todosFromLocalStorage = localStorage.getItem('todos')
   ? JSON.parse(localStorage.getItem('todos'))
   : [];
-// const list = todosFromLocalStorage || toDoTasks;
 const list = todosFromLocalStorage;
 
 const component = () => {
@@ -45,7 +38,8 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
       <div class="todo-input-div">
         <input type="checkbox" id="check" value=${task.index} checked />
-        <p class='todo-description isChecked'> ${task.description}</p>
+        <input type="text" class="todo-input isChecked" value="${task.description}" />
+        
       </div>
       <p><i class="fas fa-ellipsis-v"></i></p>
     </li>`;
@@ -53,7 +47,7 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
         <div class="todo-input-div">
           <input type="checkbox" id="check" value=${task.index} />
-          <p class='todo-description '> ${task.description}</p>
+          <input type="text" class="todo-input" value="${task.description}"/>
         </div>
         <p><i class="fas fa-ellipsis-v"></i></p>
       </li>`;
