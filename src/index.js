@@ -38,7 +38,7 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
       <div class="todo-input-div">
         <input type="checkbox" id="check" value=${task.index} checked />
-        <input type="text" id="edit-input" class="todo-input isChecked" value="${task.description}" />
+        <input name="edit-input" type="text" id="edit-input" class="todo-input isChecked" value="${task.description}" readonly/>
       </div>
       <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo "></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
     </li>`;
@@ -46,7 +46,7 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
         <div class="todo-input-div">
           <input type="checkbox" id="check" value=${task.index} />
-          <input type="text" id="edit-input" class="todo-input" value="${task.description}"/>
+          <input name="edit-input" type="text" id="edit-input" class="todo-input" value="${task.description}" readonly/>
         </div>
         <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo"></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
       </li>`;

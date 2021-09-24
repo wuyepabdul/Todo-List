@@ -50,6 +50,7 @@ export const editTodo = (todosFromLocalStorage) => {
         if (todoId === todo.index) {
           const inputField =
             editInputField.parentElement.children[0].lastElementChild;
+          inputField.readOnly = false;
           inputField.addEventListener('keyup', (event) => {
             todo.description = event.target.value;
             todosFromLocalStorage.splice(index, 1, todo);
