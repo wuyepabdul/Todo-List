@@ -1,11 +1,11 @@
 import './style.css';
 import handleChecks from './updateTodo.js';
-
-const toDoTasks = [
-  { index: 2, description: 'complete To Do List Project', completed: false },
-  { index: 1, description: 'wash dishes', completed: false },
-  { index: 3, description: 'Fix car', completed: false },
-];
+import {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  clearCompletedTodos,
+} from './modifyTodo.js';
 
 let todoMarkup = `      
 <ul class="todo-ul">
@@ -16,15 +16,21 @@ let todoMarkup = `
 <li class="todo-li">
   <input
     type="text"
+    name="new-todo"
+    id="new-todo"
     class="todo-input add-todo"
     placeholder="Add to your list..."
-  />
+  />  
+  <button type='submit' class='add-btn'> Add</button>
 </li>
 </ul>`;
 
 const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
-const todosFromLocalStorage = localStorage.getItem('todos') && JSON.parse(localStorage.getItem('todos'));
-const list = todosFromLocalStorage || toDoTasks;
+
+const todosFromLocalStorage = localStorage.getItem('todos')
+  ? JSON.parse(localStorage.getItem('todos'))
+  : [];
+const list = todosFromLocalStorage;
 
 const component = () => {
   const element = document.createElement('div');
@@ -36,17 +42,17 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
       <div class="todo-input-div">
         <input type="checkbox" id="check" value=${task.index} checked />
-        <p class='todo-description isChecked'> ${task.description}</p>
+        <input name="edit-input" type="text" id="edit-input" class="todo-input isChecked" value="${task.description}" readonly/>
       </div>
-      <p><i class="fas fa-ellipsis-v"></i></p>
+      <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo "></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
     </li>`;
       } else {
         todoMarkup += `<li class="todo-li todo-container">
         <div class="todo-input-div">
           <input type="checkbox" id="check" value=${task.index} />
-          <p class='todo-description '> ${task.description}</p>
+          <input name="edit-input" type="text" id="edit-input" class="todo-input" value="${task.description}" readonly/>
         </div>
-        <p><i class="fas fa-ellipsis-v"></i></p>
+        <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo"></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
       </li>`;
       }
     });
@@ -59,3 +65,11 @@ document.body.appendChild(component());
 const listOfTodoElement = document.querySelectorAll('.todo-container');
 
 handleChecks(list, listOfTodoElement);
+
+addTodo(todosFromLocalStorage);
+
+editTodo(todosFromLocalStorage);
+
+deleteTodo(todosFromLocalStorage);
+
+clearCompletedTodos(todosFromLocalStorage);
