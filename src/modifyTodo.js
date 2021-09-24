@@ -4,8 +4,8 @@ export const addTodo = (todosFromLocalStorage) => {
   const inputField = document.querySelector('#new-todo');
   const addBtn = document.querySelector('.add-btn');
 
-  inputField.addEventListener('change', (e) => {
-    data.description = e.target.value;
+  inputField.addEventListener('change', (event) => {
+    data.description = event.target.value;
   });
 
   addBtn.addEventListener('click', () => {
@@ -25,7 +25,7 @@ export const deleteTodo = (todosFromLocalStorage) => {
       todosFromLocalStorage.forEach((todo) => {
         if (todoId === todo.index) {
           const newTodoList = todosFromLocalStorage.filter(
-            (todo) => todo.index !== todoId,
+            (todo) => todo.index !== todoId
           );
           localStorage.setItem('todos', JSON.stringify(newTodoList));
           window.location.reload();
@@ -37,16 +37,30 @@ export const deleteTodo = (todosFromLocalStorage) => {
 
 export const editTodo = (todosFromLocalStorage) => {
   const editIcons = document.querySelectorAll('.edit-todo');
-  const editInputField = document.getElementById('edit-input');
+
   editIcons.forEach((editIcon) => {
     editIcon.addEventListener('click', () => {
+      const editInputField = editIcon.parentElement;
       const deleteIcon = editIcon.parentElement.children[1];
       const todoId = Number(editIcon.parentElement.id);
+
       editIcon.classList.add('inActive');
       deleteIcon.classList.remove('inActive');
-      todosFromLocalStorage.forEach((todo) => {
+      todosFromLocalStorage.forEach((todo, index) => {
         if (todoId === todo.index) {
-          console.log(todo);
+          const inputField =
+            editInputField.parentElement.children[0].lastElementChild;
+          inputField.addEventListener('keyup', (event) => {
+            todo.description = event.target.value;
+            todosFromLocalStorage.splice(index, 1, todo);
+            localStorage.setItem(
+              'todos',
+              JSON.stringify(todosFromLocalStorage)
+            );
+            if (event.key === 'Enter') {
+              window.location.reload();
+            }
+          });
         }
       });
     });
