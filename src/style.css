@@ -56,11 +56,22 @@ li {
 }
 
 .todo-input:focus {
-  outline: none;
+  outline: #fff;
 }
 
-.fa-ellipsis-v {
+.fas,
+.far {
   color: grey;
+  font-size: 20px;
+}
+
+.fas,
+.far:hover {
+  cursor: pointer;
+}
+
+.inActive {
+  display: none;
 }
 
 .clear-btn {

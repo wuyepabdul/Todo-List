@@ -1,6 +1,6 @@
 import './style.css';
 import handleChecks from './updateTodo.js';
-import { addTodo,editTodo } from './modifyTodo.js';
+import { addTodo, editTodo, deleteTodo } from './modifyTodo.js';
 
 let todoMarkup = `      
 <ul class="todo-ul">
@@ -38,17 +38,17 @@ const component = () => {
         todoMarkup += `<li class="todo-li todo-container">
       <div class="todo-input-div">
         <input type="checkbox" id="check" value=${task.index} checked />
-        <input type="text" class="todo-input isChecked" value="${task.description}" />
+        <input type="text" id="edit-input" class="todo-input isChecked" value="${task.description}" />
       </div>
-      <p><i class="fas fa-ellipsis-v edit-todo"></i></p>
+      <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo "></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
     </li>`;
       } else {
         todoMarkup += `<li class="todo-li todo-container">
         <div class="todo-input-div">
           <input type="checkbox" id="check" value=${task.index} />
-          <input type="text" class="todo-input" value="${task.description}"/>
+          <input type="text" id="edit-input" class="todo-input" value="${task.description}"/>
         </div>
-        <p><i class="fas fa-ellipsis-v edit-todo"></i></p>
+        <p id="${task.index}"><i class="fas fa-ellipsis-v edit-todo"></i><i class="far fa-trash-alt delete-todo inActive"></i></p>
       </li>`;
       }
     });
@@ -64,4 +64,6 @@ handleChecks(list, listOfTodoElement);
 
 addTodo(todosFromLocalStorage);
 
-editTodo()
+editTodo(todosFromLocalStorage);
+
+deleteTodo(todosFromLocalStorage);

@@ -18,11 +18,37 @@ export const addTodo = (todosFromLocalStorage) => {
 };
 
 export const deleteTodo = (todosFromLocalStorage) => {
-  console.log('clicked');
+  const deleteIcons = document.querySelectorAll('.delete-todo');
+  deleteIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+      const todoId = Number(icon.parentElement.id);
+      todosFromLocalStorage.forEach((todo) => {
+        if (todoId === todo.index) {
+          const newTodoList = todosFromLocalStorage.filter(
+            (todo) => todo.index !== todoId,
+          );
+          localStorage.setItem('todos', JSON.stringify(newTodoList));
+          window.location.reload();
+        }
+      });
+    });
+  });
 };
 
 export const editTodo = (todosFromLocalStorage) => {
-  console.log('clicked');
-  const editIcon = document.querySelectorAll('.edit-todo');
-  console.log(editIcon);
+  const editIcons = document.querySelectorAll('.edit-todo');
+  const editInputField = document.getElementById('edit-input');
+  editIcons.forEach((editIcon) => {
+    editIcon.addEventListener('click', () => {
+      const deleteIcon = editIcon.parentElement.children[1];
+      const todoId = Number(editIcon.parentElement.id);
+      editIcon.classList.add('inActive');
+      deleteIcon.classList.remove('inActive');
+      todosFromLocalStorage.forEach((todo) => {
+        if (todoId === todo.index) {
+          console.log(todo);
+        }
+      });
+    });
+  });
 };
