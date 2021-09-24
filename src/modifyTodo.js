@@ -10,8 +10,7 @@ export const addTodo = (todosFromLocalStorage) => {
 
   addBtn.addEventListener('click', () => {
     todosFromLocalStorage.push(data);
-    todosFromLocalStorage[todosFromLocalStorage.length - 1].index =
-      todosFromLocalStorage.length;
+    todosFromLocalStorage[todosFromLocalStorage.length - 1].index = todosFromLocalStorage.length;
     localStorage.setItem('todos', JSON.stringify(todosFromLocalStorage));
     window.location.reload();
   });
@@ -26,7 +25,7 @@ export const deleteTodo = (todosFromLocalStorage) => {
       todosFromLocalStorage.forEach((todo) => {
         if (todoId === todo.index) {
           listOfTodos = todosFromLocalStorage.filter(
-            (todo) => todo.index !== todoId
+            (todo) => todo.index !== todoId,
           );
         }
       });
@@ -52,15 +51,14 @@ export const editTodo = (todosFromLocalStorage) => {
       deleteIcon.classList.remove('inActive');
       todosFromLocalStorage.forEach((todo, index) => {
         if (todoId === todo.index) {
-          const inputField =
-            editInputField.parentElement.children[0].lastElementChild;
+          const inputField = editInputField.parentElement.children[0].lastElementChild;
           inputField.readOnly = false;
           inputField.addEventListener('keyup', (event) => {
             todo.description = event.target.value;
             todosFromLocalStorage.splice(index, 1, todo);
             localStorage.setItem(
               'todos',
-              JSON.stringify(todosFromLocalStorage)
+              JSON.stringify(todosFromLocalStorage),
             );
             if (event.key === 'Enter') {
               window.location.reload();
@@ -78,7 +76,7 @@ export const clearCompletedTodos = (todosFromLocalStorage) => {
     todosFromLocalStorage.forEach((todo) => {
       if (todo.completed) {
         const newTodoList = todosFromLocalStorage.filter(
-          (todo) => !todo.completed
+          (todo) => !todo.completed,
         );
         newTodoList.forEach((todo, index) => {
           todo.index = index + 1;

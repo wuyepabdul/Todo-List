@@ -25,8 +25,7 @@ let todoMarkup = `
 </li>
 </ul>`;
 
-const clearButton =
-  "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
 
 const todosFromLocalStorage = localStorage.getItem('todos')
   ? JSON.parse(localStorage.getItem('todos'))
