@@ -1,6 +1,6 @@
 const data = { index: 1, description: '', completed: false };
 
-export default function addTodo(todosFromLocalStorage) {
+export const addTodo = (todosFromLocalStorage) => {
   const inputField = document.querySelector('#new-todo');
   const addBtn = document.querySelector('.add-btn');
 
@@ -15,4 +15,14 @@ export default function addTodo(todosFromLocalStorage) {
     localStorage.setItem('todos', JSON.stringify(todosFromLocalStorage));
     window.location.reload();
   });
-}
+};
+
+export const deleteTodo = (todosFromLocalStorage) => {
+  console.log('clicked');
+};
+
+export const editTodo = (todosFromLocalStorage) => {
+  console.log('clicked');
+  const editIcon = document.querySelectorAll('.edit-todo');
+  console.log(editIcon);
+};
