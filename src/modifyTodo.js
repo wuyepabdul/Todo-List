@@ -67,3 +67,18 @@ export const editTodo = (todosFromLocalStorage) => {
     });
   });
 };
+
+export const clearCompletedTodos = (todosFromLocalStorage) => {
+  const clearBtn = document.querySelector('.clear-btn');
+  clearBtn.addEventListener('click', () => {
+    todosFromLocalStorage.forEach((todo) => {
+      if (todo.completed) {
+        const newTodoList = todosFromLocalStorage.filter(
+          (todo) => !todo.completed
+        );
+        localStorage.setItem('todos', JSON.stringify(newTodoList));
+        window.location.reload();
+      }
+    });
+  });
+};

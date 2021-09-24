@@ -1,6 +1,11 @@
 import './style.css';
 import handleChecks from './updateTodo.js';
-import { addTodo, editTodo, deleteTodo } from './modifyTodo.js';
+import {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  clearCompletedTodos,
+} from './modifyTodo.js';
 
 let todoMarkup = `      
 <ul class="todo-ul">
@@ -67,3 +72,5 @@ addTodo(todosFromLocalStorage);
 editTodo(todosFromLocalStorage);
 
 deleteTodo(todosFromLocalStorage);
+
+clearCompletedTodos(todosFromLocalStorage);
