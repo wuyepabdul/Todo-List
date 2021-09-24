@@ -19,18 +19,22 @@ export const addTodo = (todosFromLocalStorage) => {
 
 export const deleteTodo = (todosFromLocalStorage) => {
   const deleteIcons = document.querySelectorAll('.delete-todo');
+  let listOfTodos = [];
   deleteIcons.forEach((icon) => {
     icon.addEventListener('click', () => {
       const todoId = Number(icon.parentElement.id);
       todosFromLocalStorage.forEach((todo) => {
         if (todoId === todo.index) {
-          const newTodoList = todosFromLocalStorage.filter(
+          listOfTodos = todosFromLocalStorage.filter(
             (todo) => todo.index !== todoId
           );
-          localStorage.setItem('todos', JSON.stringify(newTodoList));
-          window.location.reload();
         }
       });
+      listOfTodos.forEach((todo, index) => {
+        todo.index = index + 1;
+      });
+      localStorage.setItem('todos', JSON.stringify(listOfTodos));
+      window.location.reload();
     });
   });
 };
@@ -76,6 +80,9 @@ export const clearCompletedTodos = (todosFromLocalStorage) => {
         const newTodoList = todosFromLocalStorage.filter(
           (todo) => !todo.completed
         );
+        newTodoList.forEach((todo, index) => {
+          todo.index = index + 1;
+        });
         localStorage.setItem('todos', JSON.stringify(newTodoList));
         window.location.reload();
       }
