@@ -8,7 +8,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://wuyepabdul.github.io/awesome-books/)
+[Live Demo Link](https://wuyepabdul.github.io/Todo-List/)
 
 ## Built With
 
@@ -19,7 +19,7 @@
 ## Getting Started
 
 **To clone this project**
-**Run command: $git clone https://github.com/wuyepabdul/awesome-books.git**
+**Run command: $git clone https://github.com/wuyepabdul/Todo-List.git**
 **or press the green Code button in the upper right corner and choose to download from the Download ZIP link.**
 
 ### Prerequisites
