@@ -1,10 +1,10 @@
 import './style.css';
-import handleChecks from './updateTodo.js';
 import {
   addTodo,
   editTodo,
   deleteTodo,
   clearCompletedTodos,
+  handleChecks,
 } from './modifyTodo.js';
 
 let todoMarkup = `      
@@ -25,17 +25,17 @@ let todoMarkup = `
 </li>
 </ul>`;
 
-const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
+const clearButton =
+  "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
 
 const todosFromLocalStorage = localStorage.getItem('todos')
   ? JSON.parse(localStorage.getItem('todos'))
   : [];
-const list = todosFromLocalStorage;
 
 const component = () => {
   const element = document.createElement('div');
   element.classList.add('todo-div');
-  list
+  todosFromLocalStorage
     .sort((object1, object2) => object1.index - object2.index)
     .forEach((task) => {
       if (task.completed === true) {
@@ -64,7 +64,7 @@ document.body.appendChild(component());
 
 const listOfTodoElement = document.querySelectorAll('.todo-container');
 
-handleChecks(list, listOfTodoElement);
+handleChecks(todosFromLocalStorage, listOfTodoElement);
 
 addTodo(todosFromLocalStorage);
 

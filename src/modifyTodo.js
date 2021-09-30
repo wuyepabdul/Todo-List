@@ -1,6 +1,40 @@
-const data = { index: 1, description: '', completed: false };
+export const setStorageAndReloadPage = (todos) => {
+  localStorage.setItem('todos', JSON.stringify(todos));
+  window.location.reload();
+};
+
+export const handleChecks = (list, listOfTodoElement) => {
+  listOfTodoElement.forEach((element) => {
+    const checkInputField = element.children[0].children[0];
+    const descriptionTag = element.children[0].children[1];
+
+    checkInputField.addEventListener('change', () => {
+      if (checkInputField.checked) {
+        descriptionTag.classList.add('isChecked');
+        list.forEach((task) => {
+          const matchedIndex = task.index === Number(checkInputField.value);
+          if (matchedIndex) {
+            task.completed = true;
+            checkInputField.checked = true;
+            localStorage.setItem('todos', JSON.stringify(list));
+          }
+        });
+      } else {
+        descriptionTag.classList.remove('isChecked');
+        list.forEach((task) => {
+          const matchedIndex = task.index === Number(checkInputField.value);
+          if (matchedIndex) {
+            task.completed = false;
+            localStorage.setItem('todos', JSON.stringify(list));
+          }
+        });
+      }
+    });
+  });
+};
 
 export const addTodo = (todosFromLocalStorage) => {
+  const data = { index: 1, description: '', completed: false };
   const inputField = document.querySelector('#new-todo');
   const addBtn = document.querySelector('.add-btn');
 
@@ -11,8 +45,7 @@ export const addTodo = (todosFromLocalStorage) => {
   addBtn.addEventListener('click', () => {
     todosFromLocalStorage.push(data);
     todosFromLocalStorage[todosFromLocalStorage.length - 1].index = todosFromLocalStorage.length;
-    localStorage.setItem('todos', JSON.stringify(todosFromLocalStorage));
-    window.location.reload();
+    setStorageAndReloadPage(todosFromLocalStorage);
   });
 };
 
@@ -32,8 +65,7 @@ export const deleteTodo = (todosFromLocalStorage) => {
       listOfTodos.forEach((todo, index) => {
         todo.index = index + 1;
       });
-      localStorage.setItem('todos', JSON.stringify(listOfTodos));
-      window.location.reload();
+      setStorageAndReloadPage(listOfTodos);
     });
   });
 };
@@ -81,8 +113,7 @@ export const clearCompletedTodos = (todosFromLocalStorage) => {
         newTodoList.forEach((todo, index) => {
           todo.index = index + 1;
         });
-        localStorage.setItem('todos', JSON.stringify(newTodoList));
-        window.location.reload();
+        setStorageAndReloadPage(newTodoList);
       }
     });
   });
