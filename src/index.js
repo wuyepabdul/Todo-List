@@ -5,7 +5,7 @@ import {
   deleteTodo,
   clearCompletedTodos,
   handleChecks,
-} from './modifyTodo.js';
+} from './modifyTodo';
 
 let todoMarkup = `      
 <ul class="todo-ul">

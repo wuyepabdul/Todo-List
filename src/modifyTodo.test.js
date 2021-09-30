@@ -1,7 +1,7 @@
 import {
   addTodo,
   deleteTodo,
-} from './__mocks__/modifyTodo.js';
+} from './__mocks__/modifyTodo';
 
 jest.mock('./modifyTodo.js');
 
