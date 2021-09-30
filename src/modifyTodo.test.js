@@ -1,4 +1,7 @@
-import { addTodo } from './__mocks__/modifyTodo.js';
+import {
+  addTodo,
+  deleteTodo,
+} from './__mocks__/modifyTodo';
 
 jest.mock('./modifyTodo.js');
 
@@ -29,5 +32,16 @@ describe('Add a new task', () => {
     const updatedTaskList = addTodo(task3, todoList);
     const newTaskIndex = updatedTaskList[updatedTaskList.length - 1].index;
     expect(newTaskIndex).toStrictEqual(3);
+  });
+});
+
+describe('Delete a new task', () => {
+  test('should delete a task from the array', () => {
+    const arrayOfTasks = [task1, task2, task3];
+    expect(deleteTodo(task1.index, arrayOfTasks).length).toStrictEqual(2);
+  });
+  test('should check if array length correctly factors deleted item', () => {
+    const arrayOfTasks = [task1, task2, task3];
+    expect(deleteTodo(task1.index, arrayOfTasks).length).not.toStrictEqual(3);
   });
 });
