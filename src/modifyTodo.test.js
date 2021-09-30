@@ -1,5 +1,10 @@
 import { expect } from '@jest/globals';
-import { addTodo, deleteTodo, editTodo } from './__mocks__/modifyTodo.js';
+import {
+  addTodo,
+  deleteTodo,
+  editTodo,
+  handleChecks,
+} from './__mocks__/modifyTodo.js';
 
 jest.mock('./modifyTodo.js');
 
@@ -11,7 +16,7 @@ const task1 = {
 const task2 = {
   index: 2,
   description: 'Do laundry',
-  completed: false,
+  completed: true,
 };
 const task3 = {
   index: 3,
@@ -49,5 +54,9 @@ describe('Edit a new task', () => {
     const todo = { index: 1, description: 'Wash dishes', completed: false };
     const value = 'Workout';
     expect(editTodo(todo, value).description).toBe('Workout');
+  });
+  test('should update task to completed or not completed', () => {
+    expect(handleChecks(task1).completed).toBeTruthy();
+    expect(handleChecks(task2).completed).toBeFalsy();
   });
 });

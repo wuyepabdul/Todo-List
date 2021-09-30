@@ -14,6 +14,7 @@ export const editTodo = (item, value) => {
 
 export const handleChecks = (item) => {
   item.completed = !item.completed;
+  console.log(item)
   return item;
 };
 
