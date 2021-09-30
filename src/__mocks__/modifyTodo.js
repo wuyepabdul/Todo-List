@@ -4,5 +4,3 @@ export const addTodo = (item, array) => {
 
   return array;
 };
-
-export const deleteTodo = (itemId, array) => array.filter((todo) => todo.index !== itemId);
