@@ -1,1 +1,4 @@
 node_modules
+.hintrc
+.styelintrc.json
+.eslintrc.json
