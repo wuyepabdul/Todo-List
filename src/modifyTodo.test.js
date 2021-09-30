@@ -1,4 +1,11 @@
+<<<<<<< Updated upstream
 import { addTodo, deleteTodo } from './__mocks__/modifyTodo.js';
+=======
+import {
+  addTodo,
+  deleteTodo,
+} from './__mocks__/modifyTodo.js';
+>>>>>>> Stashed changes
 
 jest.mock('./modifyTodo.js');
 
