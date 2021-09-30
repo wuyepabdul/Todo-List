@@ -17,7 +17,18 @@ export const handleChecks = (item) => {
   return item;
 };
 
-
+export const clearCompletedTodos = (arrayOfTodos) => {
+  const newTodoList = [];
+  arrayOfTodos.forEach((todo) => {
+    if (!todo.completed) {
+      newTodoList.push(todo);
+    }
+  });
+  newTodoList.forEach((todo, index) => {
+    todo.index = index + 1;
+  });
+  return newTodoList;
+};
 
 /* const todos = [
   { index: 1, description: 'Do laundry', completed: false },
