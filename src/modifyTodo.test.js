@@ -1,24 +1,21 @@
-import {
-  addTodo,
-  deleteTodo
-} from './__mocks__/modifyTodo.js';
+import { addTodo, deleteTodo } from './__mocks__/modifyTodo.js';
 
 jest.mock('./modifyTodo.js');
 
 const task1 = {
   index: 1,
   description: 'Wash dishes',
-  completed: false
+  completed: false,
 };
 const task2 = {
   index: 2,
   description: 'Do laundry',
-  completed: false
+  completed: false,
 };
 const task3 = {
   index: 3,
   description: 'Go shopping',
-  completed: false
+  completed: false,
 };
 
 const todoList = [task1, task2];
