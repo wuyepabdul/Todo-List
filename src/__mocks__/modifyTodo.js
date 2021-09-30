@@ -12,6 +12,12 @@ export const editTodo = (item, value) => {
   return item;
 };
 
+export const handleChecks = (item) => {
+  item.completed = !item.completed;
+  return item;
+};
+
+
 
 /* const todos = [
   { index: 1, description: 'Do laundry', completed: false },
