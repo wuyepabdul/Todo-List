@@ -1,4 +1,4 @@
-import { addNewTodo } from './mock_files/tasks';
+import { addNewTodo } from './mock_files/tasks.js';
 
 const task1 = { index: 1, description: 'Wash dishes', completed: false };
 const task2 = { index: 2, description: 'Do laundry', completed: false };
