@@ -1,6 +1,7 @@
 import { expect } from '@jest/globals';
 import {
   addTodo,
+  clearCompletedTodos,
   deleteTodo,
   editTodo,
   handleChecks,
@@ -22,6 +23,12 @@ const task3 = {
   index: 3,
   description: 'Go shopping',
   completed: false,
+};
+
+const task4 = {
+  index: 4,
+  description: 'Go Driving',
+  completed: true,
 };
 
 const todoList = [task1, task2];
@@ -58,5 +65,10 @@ describe('Edit a new task', () => {
   test('should update task to completed or not completed', () => {
     expect(handleChecks(task1).completed).toBeTruthy();
     expect(handleChecks(task2).completed).toBeFalsy();
+  });
+  test('should clear completed tasks', () => {
+    const arrayOfTasks = [task1, task2, task3, task4];
+    expect(clearCompletedTodos(arrayOfTasks).length).toStrictEqual(2);
+    expect(clearCompletedTodos(arrayOfTasks)[0].index).toStrictEqual(1);
   });
 });

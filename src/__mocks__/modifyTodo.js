@@ -14,7 +14,6 @@ export const editTodo = (item, value) => {
 
 export const handleChecks = (item) => {
   item.completed = !item.completed;
-  console.log(item)
   return item;
 };
 
@@ -28,6 +27,7 @@ export const clearCompletedTodos = (arrayOfTodos) => {
   newTodoList.forEach((todo, index) => {
     todo.index = index + 1;
   });
+  console.log(newTodoList)
   return newTodoList;
 };
 
