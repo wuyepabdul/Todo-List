@@ -83,14 +83,13 @@ describe('Dom manipulation', () => {
     document.body.innerHTML = `
         <div class='wrapper'>
             <ul>
-              <li class='list1'> 1 </li>
-              <li class='list1'> 2 </li>
-              <li class='list1'> 3 </li>
+              <li id='list1'> 1 </li>
+              <li id='list1'> 2 </li>
+              <li id='list1'> 3 </li>
             </ul>
         </div>
     `;
-    const listTags = document.querySelectorAll('.list1');
-    // console.log(listTags)
-    expect(listTags.length).toBe(2);
+    const listTags = document.querySelectorAll('#list1');
+    expect(listTags.length).toBe(3);
   });
 });
