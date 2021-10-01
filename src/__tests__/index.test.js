@@ -1,4 +1,7 @@
-/* * @jest-environment jsdom */
+/*
+ * @jest-environment jsdom
+ */
+
 import {
   clearButton,
   todoLiMarkup,
