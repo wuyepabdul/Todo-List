@@ -14,16 +14,6 @@ const task1 = {
   description: 'Wash dishes',
   completed: false,
 };
-const task2 = {
-  index: 2,
-  description: 'Do laundry',
-  completed: true,
-};
-const task3 = {
-  index: 3,
-  description: 'Go shopping',
-  completed: false,
-};
 
 describe('Dom manipulation', () => {
   test('Should add todo heading to dom', () => {
