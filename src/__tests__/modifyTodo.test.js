@@ -1,13 +1,16 @@
-import { expect } from '@jest/globals';
+/*
+ * @jest-environment jsdom
+ */
+
 import {
   addTodo,
   clearCompletedTodos,
   deleteTodo,
   editTodo,
   handleChecks,
-} from './__mocks__/modifyTodo.js';
+} from '../modifyTodo.js';
 
-jest.mock('./modifyTodo.js');
+jest.mock('../modifyTodo.js');
 
 const task1 = {
   index: 1,
@@ -59,7 +62,9 @@ describe('Delete a new task', () => {
 describe('Edit a new task', () => {
   test('should edit a task from the array', () => {
     const todo = { index: 1, description: 'Wash dishes', completed: false };
+    // const todo = { index: 1, description: 'Workout', completed: false };
     const value = 'Workout';
+
     expect(editTodo(todo, value).description).toBe('Workout');
   });
   test('should update task to completed or not completed', () => {
@@ -70,5 +75,22 @@ describe('Edit a new task', () => {
     const arrayOfTasks = [task1, task2, task3, task4];
     expect(clearCompletedTodos(arrayOfTasks).length).toStrictEqual(2);
     expect(clearCompletedTodos(arrayOfTasks)[0].index).toStrictEqual(1);
+  });
+});
+
+describe('Dom manipulation', () => {
+  it('should pass', () => {
+    document.body.innerHTML = `
+        <div class='wrapper'>
+            <ul>
+              <li class='list1'> 1 </li>
+              <li class='list1'> 2 </li>
+              <li class='list1'> 3 </li>
+            </ul>
+        </div>
+    `;
+    const listTags = document.querySelectorAll('.list1');
+    // console.log(listTags)
+    expect(listTags.length).toBe(2);
   });
 });
