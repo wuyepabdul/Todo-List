@@ -5,8 +5,9 @@ import {
   todoUlMarkup,
 } from '../__mocks__/index.js';
 import {
-  addTodo
+  addTodo,
 } from '../__mocks__/modifyTodo.js';
+
 jest.mock('../index.js');
 const task1 = {
   index: 1,
@@ -23,12 +24,7 @@ const task3 = {
   description: 'Go shopping',
   completed: false,
 };
-const task4 = {
-  index: 4,
-  description: 'Go Driving',
-  completed: true,
-};
-const todoList = [task1, task2, task3];
+
 describe('Dom manipulation', () => {
   test('Should add todo heading to dom', () => {
     const divElement = document.createElement('div') + todoUlMarkup() + clearButton();

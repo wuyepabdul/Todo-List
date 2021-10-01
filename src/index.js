@@ -27,9 +27,9 @@ let todoMarkup = `
 
 const clearButton = "<li><button type='button' class='clear-btn'>Clear All completed</button></li>";
 
-const todosFromLocalStorage = localStorage.getItem('todos') ?
-  JSON.parse(localStorage.getItem('todos')) :
-  [];
+const todosFromLocalStorage = localStorage.getItem('todos')
+  ? JSON.parse(localStorage.getItem('todos'))
+  : [];
 
 const component = () => {
   const element = document.createElement('div');
