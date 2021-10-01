@@ -40,5 +40,13 @@ describe('Dom manipulation', () => {
     expect(headingTag).toBe("Today's To Do");
     expect(clearBtn).toBeTruthy();
   });
-
+  test('Should add created todo to dom', () => {
+    const divElement = document.createElement('div') + todoUlMarkup();
+    const arrayOfTasks = [];
+    const newTodo = addTodo(task1, arrayOfTasks);
+    document.body.innerHTML = divElement + todoLiMarkup(task1) + clearButton();
+    const todosInDom = document.querySelectorAll('.todo-container');
+    expect(newTodo.length).toStrictEqual(1);
+    expect(todosInDom.length).toBe(1);
+  });
 });
